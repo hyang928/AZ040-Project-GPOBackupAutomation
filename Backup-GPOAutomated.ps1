@@ -9,18 +9,13 @@ param(
     [int]$RetentionDays = 30
 )
 
-# 0. PowerShell Version Check
-if ($PSVersionTable.PSVersion.Major -lt 7) {
-    throw "This script requires PowerShell 7.0 or later. You are currently running PowerShell $($PSVersionTable.PSVersion)."
-}
-
 # 1. Compatibility Imports
 # ActiveDirectory and GroupPolicy ship as RSAT Windows features, not PowerShell Gallery
 # modules, so they must be installed via Add-WindowsCapability (requires an elevated session).
 $IsElevated = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 Write-Host "[-] Loading ActiveDirectory and GroupPolicy modules..." 
-if (-not (Get-Module -ListAvailable -Name ActiveDirectory)) {
+if (-not (Get-Module -ListAvailable -Name ActiveDirectory -SkipEditionCheck)) {
     if ($IsElevated) {
         Write-Host "[-] ActiveDirectory module not found. Installing RSAT-AD-PowerShell feature..." 
         Add-WindowsCapability -Online -Name "Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0"
