@@ -82,4 +82,12 @@ C:\GPOBackups\
 ## What I learned
 By working on this project, I learned:
 * GPMC in RSAT enables remote GPO backup from a client machine
-* 
+* Using proper PowerShell built-in variable is essential
+```text
+$PSHOME
+$PSScriptRoot
+$PSItem ($_)
+$PSCommandPath
+$Error
+```
+*
