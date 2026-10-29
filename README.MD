@@ -57,9 +57,9 @@ C:\GPOBackups\
 │   ├── RawGPOs
 │   ├── Reports
 │   │   ├── HTML
-│	│   │   ├── report.html
+││   │   ├── report.html
 │   │   ├── XML
-│	│   │   ├── report.html
+││   │   ├── report.html
 │   └── BackupExecution.log
 ```
 
