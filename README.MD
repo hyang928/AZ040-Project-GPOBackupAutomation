@@ -107,7 +107,7 @@ Get-ScheduledTask -TaskName "Automated-GPO-Backup" | Select-Object TaskName, Sta
 ## What I learned
 By working on this project, I learned:
 * GPMC in RSAT enables remote GPO backup from a client machine
-* Using proper PowerShell built-in variable is essential
+* Practical usage cases of PowerShell built-in variables
 ```text
 $PSHOME : full absolute path to the directory of the currently running script
 $PSScriptRoot : stores the full directory path of the folder containing the currently running script
