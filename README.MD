@@ -52,14 +52,14 @@ An automation method to backup Group Policy Objects(GPOs) within an Active Direc
 C:\GPOBackups\
 ├── yyyy-mm-dd_hhmmss\
 │   ├── Metadata
-│	  │   ├── Manifest.json
+│	│   ├── Manifest.json
 │ 	│   ├── OULinks.json
 │   ├── RawGPOs
 │   ├── Reports
 │   │   ├── HTML
-│	  │   │   ├── report.html
+│	│   │   ├── report.html
 │   │   ├── XML
-│	  │   │   ├── report.html
+│	│   │   ├── report.html
 │   └── BackupExecution.log
 ```
 
