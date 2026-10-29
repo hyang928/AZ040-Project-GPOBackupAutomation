@@ -16,7 +16,7 @@ An automation method to backup Group Policy Objects(GPOs) within an Active Direc
 
 ## Sequence
 
-## Phase1: Environment and compatibility set up
+## Phase 1: Environment and compatibility set up
 
 ### RsatGPMC.ps1 
 
@@ -63,7 +63,7 @@ C:\GPOBackups\
 │   └── BackupExecution.log
 ```
 
-## Phase2: Core Scripts
+## Phase 2: Core Scripts
 
 ### Backup-GPOAutomated.ps1: backup engine
 
@@ -79,15 +79,40 @@ C:\GPOBackups\
 ```text
 .\Backup-GPOAutomated.ps1
 ```
+
+## Phase 3: Schedule Task
+
+### Register-Schedule.ps1
+
+* Registers the new reoccuring schedule task by assigning parameters as necessary
+
+```text
+Register-ScheduledTask '
+  -TaskName $TaskName '
+  -Action (New-ScheduledTaskAction -Execute ...) '
+  -Trigger (New-ScheduledTaskTrigger -Daily -At $ExecutionTime) '
+  ...
+```
+* Run:
+
+```text
+.\Register-Schedule.ps1
+```
+* Verify the schedule registration
+```text
+Get-ScheduledTask -TaskName "Automated-GPO-Backup" | Select-Object TaskName, State
+```
+
+
 ## What I learned
 By working on this project, I learned:
 * GPMC in RSAT enables remote GPO backup from a client machine
 * Using proper PowerShell built-in variable is essential
 ```text
-$PSHOME
-$PSScriptRoot
-$PSItem ($_)
-$PSCommandPath
-$Error
+$PSHOME : full absolute path to the directory of the currently running script
+$PSScriptRoot : stores the full directory path of the folder containing the currently running script
+$PSCommandPath : stores the full directory path to the filename of the currently running script
+$PSItem ($_) : evaluates the current object within the command pipeline
+$Error : an array tracking all errors encountered during the currently running session
 ```
-*
+* 
